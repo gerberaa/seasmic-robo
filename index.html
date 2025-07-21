@@ -2,9 +2,75 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title></title>
-    <style>html,body{width:100vw;height:100vh;margin:0;padding:0;background:#000000;}</style>
+    <title>Custom Human CAPTCHA</title>
+    <style>
+      html,body{width:100vw;height:100vh;margin:0;padding:0;background:#000;}
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #captcha-container {
+        width: 300px;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 0 auto;
+      }
+      #human-figure {
+        width: 300px;
+        height: 400px;
+        position: relative;
+      }
+      .part {
+        position: absolute;
+        cursor: grab;
+        transition: box-shadow 0.2s;
+        z-index: 2;
+      }
+      .part.dragging {
+        z-index: 10;
+        box-shadow: 0 0 20px 5px #fff;
+      }
+      #stats {
+        color: #fff;
+        font-family: monospace;
+        font-size: 1.2em;
+        margin-top: 20px;
+        text-align: center;
+      }
+      #start-btn {
+        display: block;
+        margin: 30px auto 0 auto;
+        padding: 10px 30px;
+        font-size: 1.1em;
+        background: #fff;
+        color: #000;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: inherit;
+      }
+    </style>
   </head>
   <body>
+    <div id="captcha-container">
+      <svg id="figure-outline" width="300" height="400" style="position:absolute;left:0;top:0;z-index:0;opacity:0.18;pointer-events:none;">
+        <ellipse cx="150" cy="40" rx="30" ry="30" fill="#fff"/>
+        <rect x="140" y="70" width="20" height="100" rx="10" fill="#fff"/>
+        <rect x="80" y="80" width="60" height="20" rx="10" fill="#fff"/>
+        <rect x="160" y="80" width="60" height="20" rx="10" fill="#fff"/>
+        <rect x="120" y="170" width="20" height="80" rx="10" fill="#fff"/>
+        <rect x="160" y="170" width="20" height="80" rx="10" fill="#fff"/>
+      </svg>
+      <div id="human-figure"></div>
+    </div>
+    <button id="start-btn">Запустити капчу</button>
+    <div id="stats"></div>
+    <script src="captcha.js"></script>
   </body>
 </html> 
