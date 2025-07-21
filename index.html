@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Custom Human CAPTCHA</title>
     <style>
-      html,body{width:100vw;height:100vh;margin:0;padding:0;background:#000;}
+      html,body{width:100vw;height:100vh;margin:0;padding:0;background:#070707;}
       body {
         min-height: 100vh;
         display: flex;
@@ -13,8 +13,8 @@
         justify-content: center;
       }
       #captcha-container {
-        width: 300px;
-        height: 400px;
+        width: 360px;
+        height: 480px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -22,8 +22,8 @@
         margin: 0 auto;
       }
       #human-figure {
-        width: 300px;
-        height: 400px;
+        width: 360px;
+        height: 480px;
         position: relative;
       }
       .part {
@@ -31,11 +31,13 @@
         cursor: grab;
         transition: box-shadow 0.2s;
         z-index: 2;
+        object-fit: contain;
+        aspect-ratio: unset;
       }
       .part.dragging {
         z-index: 10;
-        box-shadow: 0 0 20px 5px #fff;
       }
+      
       #stats {
         color: #fff;
         font-family: monospace;
@@ -59,17 +61,11 @@
   </head>
   <body>
     <div id="captcha-container">
-      <svg id="figure-outline" width="300" height="400" style="position:absolute;left:0;top:0;z-index:0;opacity:0.18;pointer-events:none;">
-        <ellipse cx="150" cy="40" rx="30" ry="30" fill="#fff"/>
-        <rect x="140" y="70" width="20" height="100" rx="10" fill="#fff"/>
-        <rect x="80" y="80" width="60" height="20" rx="10" fill="#fff"/>
-        <rect x="160" y="80" width="60" height="20" rx="10" fill="#fff"/>
-        <rect x="120" y="170" width="20" height="80" rx="10" fill="#fff"/>
-        <rect x="160" y="170" width="20" height="80" rx="10" fill="#fff"/>
-      </svg>
+      <!-- Тут можна додати SVG-силует маскота для підказки, якщо потрібно -->
+      <img id="figure-outline" src="outline.png" style="position:absolute;left:0;top:0;width:360px;height:480px;z-index:0;opacity:0.18;pointer-events:none;object-fit:contain;" alt="Силует маскота" />
       <div id="human-figure"></div>
     </div>
-    <button id="start-btn">Запустити капчу</button>
+    <button id="start-btn" style="margin-bottom:20px;z-index:2;position:relative;">Запустити капчу</button>
     <div id="stats"></div>
     <script src="captcha.js"></script>
   </body>
